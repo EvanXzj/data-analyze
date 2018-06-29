@@ -1,0 +1,4 @@
+package: github.com/data-analyze
+import:
+- package: github.com/sirupsen/logrus
+  version: ~1.0.5
