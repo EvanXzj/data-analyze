@@ -1,9 +1,9 @@
 package main
 
 import (
-	"flag"
 	"os"
 
+	"github.com/data-analyze/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,27 +16,10 @@ func init() {
 	log.SetLevel(logrus.DebugLevel)
 }
 
-type cmdParams struct {
-	logFilePath,
-	runTimeLogPath string
-	routineNum int
-}
-
-// 获取命令行参数
-// 调用方法： go run main.go -routineNum 10...
-func cmdParamsParse() cmdParams {
-	logFilePath := flag.String("logFilePath", "/Users/zhijian/Public/nginx/logs/dig.log", "file path where to read log data to parse") // this is an address
-	routineNum := flag.Int("routineNum", 5, "consumer numble by goroutine")
-	runTimeLogPath := flag.String("runTimeLogPath", "/tmp/log", "this programe runtime log target file path")
-	flag.Parse()
-
-	return cmdParams{*logFilePath, *runTimeLogPath, *routineNum}
-}
-
 func main() {
 	log.Println("Server starting...")
 
-	params := cmdParamsParse()
-
-	log.Debugf("Params: logFilePath=%s routineNum=%d runTimeLogPath=%s", params.logFilePath, params.routineNum, params.runTimeLogPath)
+	// get params from commman line
+	params := utils.CmdParamsParse()
+	log.Debugf("Params: LogFilePath=%s RoutineNum=%d RunTimeLogPath=%s", params.LogFilePath, params.RoutineNum, params.RunTimeLogPath)
 }
