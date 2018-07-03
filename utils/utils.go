@@ -1,6 +1,10 @@
 package utils
 
-import "flag"
+import (
+	"flag"
+	"math/rand"
+	"time"
+)
 
 // CmdParams struct
 type CmdParams struct {
@@ -19,4 +23,15 @@ func CmdParamsParse() CmdParams {
 
 	// fmt.Println(flag.Parsed())
 	return CmdParams{*logFilePath, *runTimeLogPath, *routineNum}
+}
+
+// RandomInt get ran random int number in [min max)
+func RandomInt(min, max int) int {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	if min > max {
+		return max
+	}
+
+	return r.Intn(max-min) + min
 }
