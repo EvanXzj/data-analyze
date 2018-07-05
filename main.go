@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/data-analyze/utils"
+	"github.com/evanxzj/data-analyze/utils"
 	"github.com/sirupsen/logrus"
 )
 
